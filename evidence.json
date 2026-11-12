@@ -1,0 +1,2856 @@
+{
+  "generated_at": "2026-11-12T12:15:00",
+  "python": "3.11.2",
+  "oracle": {
+    "small_graph": "exhaustive topological-order enumeration",
+    "large_graph": "home-grown DPLL All-SAT, no topo-order enumeration",
+    "independence": "no import, call or copy of merge.py normalization/grouping/solver"
+  },
+  "cases": [
+    {
+      "id": "F01-normal-unique",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "normal",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "capture",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "well-a": 10,
+                  "well-b": 20
+                }
+              },
+              {
+                "id": "correction",
+                "parents": [
+                  "capture"
+                ],
+                "reads": {
+                  "well-a": 10
+                },
+                "writes": {
+                  "well-a": 12
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 1,
+          "legal_order_count": 1,
+          "expected_rows": [
+            [
+              [
+                "well-a",
+                12
+              ],
+              [
+                "well-b",
+                20
+              ]
+            ]
+          ],
+          "actual_rows": [
+            [
+              [
+                "well-a",
+                12
+              ],
+              [
+                "well-b",
+                20
+              ]
+            ]
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "capture",
+                "correction"
+              ],
+              "rows": [
+                [
+                  "well-a",
+                  12
+                ],
+                [
+                  "well-b",
+                  20
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "normal",
+            "generation": 1,
+            "events": 2,
+            "outcomes": 1
+          }
+        ],
+        "read": {
+          "generation": 1,
+          "outcomes": [
+            {
+              "order": [
+                "capture",
+                "correction"
+              ],
+              "rows": [
+                [
+                  "well-a",
+                  12
+                ],
+                [
+                  "well-b",
+                  20
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f01-normal-unique"
+    },
+    {
+      "id": "F02-ambiguous-no-splice",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "two-agents",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "east-agent",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "well-a": 10,
+                  "well-b": 20
+                }
+              },
+              {
+                "id": "west-agent",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "well-a": 11,
+                  "well-b": 19
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 2,
+          "legal_order_count": 2,
+          "expected_rows": [
+            [
+              [
+                "well-a",
+                10
+              ],
+              [
+                "well-b",
+                20
+              ]
+            ],
+            [
+              [
+                "well-a",
+                11
+              ],
+              [
+                "well-b",
+                19
+              ]
+            ]
+          ],
+          "actual_rows": [
+            [
+              [
+                "well-a",
+                10
+              ],
+              [
+                "well-b",
+                20
+              ]
+            ],
+            [
+              [
+                "well-a",
+                11
+              ],
+              [
+                "well-b",
+                19
+              ]
+            ]
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "west-agent",
+                "east-agent"
+              ],
+              "rows": [
+                [
+                  "well-a",
+                  10
+                ],
+                [
+                  "well-b",
+                  20
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            },
+            {
+              "order": [
+                "east-agent",
+                "west-agent"
+              ],
+              "rows": [
+                [
+                  "well-a",
+                  11
+                ],
+                [
+                  "well-b",
+                  19
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "two-agents",
+            "generation": 1,
+            "events": 2,
+            "outcomes": 2
+          }
+        ],
+        "read": {
+          "generation": 1,
+          "outcomes": [
+            {
+              "order": [
+                "west-agent",
+                "east-agent"
+              ],
+              "rows": [
+                [
+                  "well-a",
+                  10
+                ],
+                [
+                  "well-b",
+                  20
+                ]
+              ]
+            },
+            {
+              "order": [
+                "east-agent",
+                "west-agent"
+              ],
+              "rows": [
+                [
+                  "well-a",
+                  11
+                ],
+                [
+                  "well-b",
+                  19
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f02-ambiguous-no-splice"
+    },
+    {
+      "id": "F03-delete-family-shrink",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "two-agents",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "east-agent",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "well-a": 10,
+                  "well-b": 20
+                }
+              },
+              {
+                "id": "west-agent",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "well-a": 11,
+                  "well-b": 19
+                }
+              }
+            ]
+          },
+          {
+            "batch_id": "withdraw",
+            "expected_generation": 1,
+            "events": [
+              {
+                "id": "withdraw",
+                "parents": [
+                  "east-agent",
+                  "west-agent"
+                ],
+                "reads": {},
+                "writes": {
+                  "well-a": null
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 2,
+          "legal_order_count": 2,
+          "expected_rows": [
+            [
+              [
+                "well-b",
+                19
+              ]
+            ],
+            [
+              [
+                "well-b",
+                20
+              ]
+            ]
+          ],
+          "actual_rows": [
+            [
+              [
+                "well-b",
+                19
+              ]
+            ],
+            [
+              [
+                "well-b",
+                20
+              ]
+            ]
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "east-agent",
+                "west-agent",
+                "withdraw"
+              ],
+              "rows": [
+                [
+                  "well-b",
+                  19
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            },
+            {
+              "order": [
+                "west-agent",
+                "east-agent",
+                "withdraw"
+              ],
+              "rows": [
+                [
+                  "well-b",
+                  20
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "two-agents",
+            "generation": 1,
+            "events": 2,
+            "outcomes": 2
+          },
+          {
+            "batch_id": "withdraw",
+            "generation": 2,
+            "events": 3,
+            "outcomes": 2
+          }
+        ],
+        "read": {
+          "generation": 2,
+          "outcomes": [
+            {
+              "order": [
+                "east-agent",
+                "west-agent",
+                "withdraw"
+              ],
+              "rows": [
+                [
+                  "well-b",
+                  19
+                ]
+              ]
+            },
+            {
+              "order": [
+                "west-agent",
+                "east-agent",
+                "withdraw"
+              ],
+              "rows": [
+                [
+                  "well-b",
+                  20
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f03-delete-family-shrink"
+    },
+    {
+      "id": "F04-observed-read-selects-branch",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "two-agents",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "east-agent",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "well-a": 10,
+                  "well-b": 20
+                }
+              },
+              {
+                "id": "west-agent",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "well-a": 11,
+                  "well-b": 19
+                }
+              }
+            ]
+          },
+          {
+            "batch_id": "observed",
+            "expected_generation": 1,
+            "events": [
+              {
+                "id": "readback",
+                "parents": [
+                  "east-agent",
+                  "west-agent"
+                ],
+                "reads": {
+                  "well-a": 11,
+                  "well-b": 19
+                },
+                "writes": {}
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 2,
+          "legal_order_count": 1,
+          "expected_rows": [
+            [
+              [
+                "well-a",
+                11
+              ],
+              [
+                "well-b",
+                19
+              ]
+            ]
+          ],
+          "actual_rows": [
+            [
+              [
+                "well-a",
+                11
+              ],
+              [
+                "well-b",
+                19
+              ]
+            ]
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "east-agent",
+                "west-agent",
+                "readback"
+              ],
+              "rows": [
+                [
+                  "well-a",
+                  11
+                ],
+                [
+                  "well-b",
+                  19
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "two-agents",
+            "generation": 1,
+            "events": 2,
+            "outcomes": 2
+          },
+          {
+            "batch_id": "observed",
+            "generation": 2,
+            "events": 3,
+            "outcomes": 1
+          }
+        ],
+        "read": {
+          "generation": 2,
+          "outcomes": [
+            {
+              "order": [
+                "east-agent",
+                "west-agent",
+                "readback"
+              ],
+              "rows": [
+                [
+                  "well-a",
+                  11
+                ],
+                [
+                  "well-b",
+                  19
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f04-observed-read-selects-branch"
+    },
+    {
+      "id": "F05-same-value-different-source",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "b",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "a",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "k": 1
+                }
+              },
+              {
+                "id": "b",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "k": 1
+                }
+              },
+              {
+                "id": "r",
+                "parents": [],
+                "reads": {
+                  "k": 1
+                },
+                "writes": {}
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 6,
+          "legal_order_count": 4,
+          "expected_rows": [
+            [
+              [
+                "k",
+                1
+              ]
+            ]
+          ],
+          "actual_rows": [
+            [
+              [
+                "k",
+                1
+              ]
+            ]
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "a",
+                "b",
+                "r"
+              ],
+              "rows": [
+                [
+                  "k",
+                  1
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "b",
+            "generation": 1,
+            "events": 3,
+            "outcomes": 1
+          }
+        ],
+        "read": {
+          "generation": 1,
+          "outcomes": [
+            {
+              "order": [
+                "a",
+                "b",
+                "r"
+              ],
+              "rows": [
+                [
+                  "k",
+                  1
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f05-same-value-different-source"
+    },
+    {
+      "id": "F06-null-read-two-origins",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "b",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "w",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "k": 5
+                }
+              },
+              {
+                "id": "d",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "k": null
+                }
+              },
+              {
+                "id": "r",
+                "parents": [],
+                "reads": {
+                  "k": null
+                },
+                "writes": {}
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 6,
+          "legal_order_count": 4,
+          "expected_rows": [
+            [],
+            [
+              [
+                "k",
+                5
+              ]
+            ]
+          ],
+          "actual_rows": [
+            [],
+            [
+              [
+                "k",
+                5
+              ]
+            ]
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "r",
+                "w",
+                "d"
+              ],
+              "rows": [],
+              "legal": true,
+              "matches_rows": true
+            },
+            {
+              "order": [
+                "d",
+                "r",
+                "w"
+              ],
+              "rows": [
+                [
+                  "k",
+                  5
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "b",
+            "generation": 1,
+            "events": 3,
+            "outcomes": 2
+          }
+        ],
+        "read": {
+          "generation": 1,
+          "outcomes": [
+            {
+              "order": [
+                "r",
+                "w",
+                "d"
+              ],
+              "rows": []
+            },
+            {
+              "order": [
+                "d",
+                "r",
+                "w"
+              ],
+              "rows": [
+                [
+                  "k",
+                  5
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f06-null-read-two-origins"
+    },
+    {
+      "id": "F07-zero-and-self-read-write",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "b",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "a",
+                "parents": [],
+                "reads": {
+                  "k": null
+                },
+                "writes": {
+                  "k": 0
+                }
+              },
+              {
+                "id": "b",
+                "parents": [
+                  "a"
+                ],
+                "reads": {
+                  "k": 0
+                },
+                "writes": {
+                  "k": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 1,
+          "legal_order_count": 1,
+          "expected_rows": [
+            [
+              [
+                "k",
+                0
+              ]
+            ]
+          ],
+          "actual_rows": [
+            [
+              [
+                "k",
+                0
+              ]
+            ]
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "a",
+                "b"
+              ],
+              "rows": [
+                [
+                  "k",
+                  0
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "b",
+            "generation": 1,
+            "events": 2,
+            "outcomes": 1
+          }
+        ],
+        "read": {
+          "generation": 1,
+          "outcomes": [
+            {
+              "order": [
+                "a",
+                "b"
+              ],
+              "rows": [
+                [
+                  "k",
+                  0
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f07-zero-and-self-read-write"
+    },
+    {
+      "id": "F08-missing-read-after-delete",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "b",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "w",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "k": 7
+                }
+              },
+              {
+                "id": "d",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "k": null
+                }
+              },
+              {
+                "id": "r",
+                "parents": [
+                  "d"
+                ],
+                "reads": {
+                  "k": null
+                },
+                "writes": {}
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 3,
+          "legal_order_count": 2,
+          "expected_rows": [
+            [],
+            [
+              [
+                "k",
+                7
+              ]
+            ]
+          ],
+          "actual_rows": [
+            [],
+            [
+              [
+                "k",
+                7
+              ]
+            ]
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "w",
+                "d",
+                "r"
+              ],
+              "rows": [],
+              "legal": true,
+              "matches_rows": true
+            },
+            {
+              "order": [
+                "d",
+                "r",
+                "w"
+              ],
+              "rows": [
+                [
+                  "k",
+                  7
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "b",
+            "generation": 1,
+            "events": 3,
+            "outcomes": 2
+          }
+        ],
+        "read": {
+          "generation": 1,
+          "outcomes": [
+            {
+              "order": [
+                "w",
+                "d",
+                "r"
+              ],
+              "rows": []
+            },
+            {
+              "order": [
+                "d",
+                "r",
+                "w"
+              ],
+              "rows": [
+                [
+                  "k",
+                  7
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f08-missing-read-after-delete"
+    },
+    {
+      "id": "F09-empty-write-barrier",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "b",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "barrier",
+                "parents": [],
+                "reads": {},
+                "writes": {}
+              },
+              {
+                "id": "after",
+                "parents": [
+                  "barrier"
+                ],
+                "reads": {},
+                "writes": {
+                  "k": 3
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 1,
+          "legal_order_count": 1,
+          "expected_rows": [
+            [
+              [
+                "k",
+                3
+              ]
+            ]
+          ],
+          "actual_rows": [
+            [
+              [
+                "k",
+                3
+              ]
+            ]
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "barrier",
+                "after"
+              ],
+              "rows": [
+                [
+                  "k",
+                  3
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "b",
+            "generation": 1,
+            "events": 2,
+            "outcomes": 1
+          }
+        ],
+        "read": {
+          "generation": 1,
+          "outcomes": [
+            {
+              "order": [
+                "barrier",
+                "after"
+              ],
+              "rows": [
+                [
+                  "k",
+                  3
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f09-empty-write-barrier"
+    },
+    {
+      "id": "F10-infeasible-batch-rejected",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "good",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "w",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "k": 1
+                }
+              }
+            ]
+          },
+          {
+            "batch_id": "bad",
+            "expected_generation": 1,
+            "events": [
+              {
+                "id": "r",
+                "parents": [],
+                "reads": {
+                  "k": 2
+                },
+                "writes": {}
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": "INCONSISTENT"
+      },
+      "actual": {
+        "observed_error": "INCONSISTENT",
+        "family_exact": false,
+        "witnesses_ok": false,
+        "verdict": null,
+        "receipts": [
+          {
+            "batch_id": "good",
+            "generation": 1,
+            "events": 1,
+            "outcomes": 1
+          }
+        ],
+        "read": null
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f10-infeasible-batch-rejected"
+    },
+    {
+      "id": "F11-cross-batch-parent",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "first",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "root",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "k": 1
+                }
+              }
+            ]
+          },
+          {
+            "batch_id": "second",
+            "expected_generation": 1,
+            "events": [
+              {
+                "id": "child",
+                "parents": [
+                  "root"
+                ],
+                "reads": {
+                  "k": 1
+                },
+                "writes": {
+                  "k": 2
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 1,
+          "legal_order_count": 1,
+          "expected_rows": [
+            [
+              [
+                "k",
+                2
+              ]
+            ]
+          ],
+          "actual_rows": [
+            [
+              [
+                "k",
+                2
+              ]
+            ]
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "root",
+                "child"
+              ],
+              "rows": [
+                [
+                  "k",
+                  2
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "first",
+            "generation": 1,
+            "events": 1,
+            "outcomes": 1
+          },
+          {
+            "batch_id": "second",
+            "generation": 2,
+            "events": 2,
+            "outcomes": 1
+          }
+        ],
+        "read": {
+          "generation": 2,
+          "outcomes": [
+            {
+              "order": [
+                "root",
+                "child"
+              ],
+              "rows": [
+                [
+                  "k",
+                  2
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f11-cross-batch-parent"
+    },
+    {
+      "id": "F12-equal-interval-distinct-future",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "b",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "a",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "k": 1
+                }
+              },
+              {
+                "id": "b",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "k": 1
+                }
+              },
+              {
+                "id": "guard",
+                "parents": [],
+                "reads": {
+                  "k": 1
+                },
+                "writes": {}
+              },
+              {
+                "id": "final",
+                "parents": [
+                  "guard"
+                ],
+                "reads": {
+                  "k": 1
+                },
+                "writes": {
+                  "k": 9
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 12,
+          "legal_order_count": 6,
+          "expected_rows": [
+            [
+              [
+                "k",
+                1
+              ]
+            ],
+            [
+              [
+                "k",
+                9
+              ]
+            ]
+          ],
+          "actual_rows": [
+            [
+              [
+                "k",
+                1
+              ]
+            ],
+            [
+              [
+                "k",
+                9
+              ]
+            ]
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "a",
+                "guard",
+                "final",
+                "b"
+              ],
+              "rows": [
+                [
+                  "k",
+                  1
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            },
+            {
+              "order": [
+                "a",
+                "b",
+                "guard",
+                "final"
+              ],
+              "rows": [
+                [
+                  "k",
+                  9
+                ]
+              ],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "b",
+            "generation": 1,
+            "events": 4,
+            "outcomes": 2
+          }
+        ],
+        "read": {
+          "generation": 1,
+          "outcomes": [
+            {
+              "order": [
+                "a",
+                "guard",
+                "final",
+                "b"
+              ],
+              "rows": [
+                [
+                  "k",
+                  1
+                ]
+              ]
+            },
+            {
+              "order": [
+                "a",
+                "b",
+                "guard",
+                "final"
+              ],
+              "rows": [
+                [
+                  "k",
+                  9
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f12-equal-interval-distinct-future"
+    },
+    {
+      "id": "F13-delete-nonexistent-well",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "b",
+            "expected_generation": 0,
+            "events": [
+              {
+                "id": "d",
+                "parents": [],
+                "reads": {},
+                "writes": {
+                  "ghost": null
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 1,
+          "legal_order_count": 1,
+          "expected_rows": [
+            []
+          ],
+          "actual_rows": [
+            []
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [
+                "d"
+              ],
+              "rows": [],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "b",
+            "generation": 1,
+            "events": 1,
+            "outcomes": 1
+          }
+        ],
+        "read": {
+          "generation": 1,
+          "outcomes": [
+            {
+              "order": [
+                "d"
+              ],
+              "rows": []
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f13-delete-nonexistent-well"
+    },
+    {
+      "id": "F14-empty-batch-advances-generation",
+      "input": {
+        "batches": [
+          {
+            "batch_id": "empty",
+            "expected_generation": 0,
+            "events": []
+          }
+        ]
+      },
+      "expected": {
+        "family_exact": true,
+        "witnesses_legal": true,
+        "expected_error": null
+      },
+      "actual": {
+        "observed_error": null,
+        "family_exact": true,
+        "witnesses_ok": true,
+        "verdict": {
+          "method": "enumerate+sat",
+          "topo_order_count": 1,
+          "legal_order_count": 1,
+          "expected_rows": [
+            []
+          ],
+          "actual_rows": [
+            []
+          ],
+          "exact": true,
+          "missing": [],
+          "spurious": [],
+          "witness_checks": [
+            {
+              "order": [],
+              "rows": [],
+              "legal": true,
+              "matches_rows": true
+            }
+          ]
+        },
+        "receipts": [
+          {
+            "batch_id": "empty",
+            "generation": 1,
+            "events": 0,
+            "outcomes": 1
+          }
+        ],
+        "read": {
+          "generation": 1,
+          "outcomes": [
+            {
+              "order": [],
+              "rows": []
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#f14-empty-batch-advances-generation"
+    },
+    {
+      "id": "E01-bool-generation-invalid",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "bool expected_generation rejected"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e01-bool-generation-invalid"
+    },
+    {
+      "id": "E02-negative-generation-invalid",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "negative generation rejected"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e02-negative-generation-invalid"
+    },
+    {
+      "id": "E03-empty-batch-id-invalid",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "empty batch id rejected"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e03-empty-batch-id-invalid"
+    },
+    {
+      "id": "E04-structural-invalid",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "9 malformed inputs all rejected"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e04-structural-invalid"
+    },
+    {
+      "id": "E05-generation-conflict",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "stale expected generation rejected"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e05-generation-conflict"
+    },
+    {
+      "id": "E06-empty-batch-ok",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "receipt={'batch_id': 'g0', 'generation': 1, 'events': 0, 'outcomes': 1}"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e06-empty-batch-ok"
+    },
+    {
+      "id": "E07-same-request-replay",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "replay={'batch_id': 'g0', 'events': 0, 'generation': 1, 'outcomes': 1}"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e07-same-request-replay"
+    },
+    {
+      "id": "E08-batch-conflict-precedence",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "batch conflict wins over generation conflict"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e08-batch-conflict-precedence"
+    },
+    {
+      "id": "E09-event-conflict",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "changed event under same id rejected"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e09-event-conflict"
+    },
+    {
+      "id": "E10-identical-event-resubmit",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "receipt={'batch_id': 'ev3', 'generation': 3, 'events': 1, 'outcomes': 1}"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e10-identical-event-resubmit"
+    },
+    {
+      "id": "E11-missing-parent",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "missing parent reported"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e11-missing-parent"
+    },
+    {
+      "id": "E12-cycle",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "cycle reported"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e12-cycle"
+    },
+    {
+      "id": "E13-failure-atomic-no-partial-state",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "audit unchanged after rejected batch"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e13-failure-atomic-no-partial-state"
+    },
+    {
+      "id": "E14-no-generation",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "unknown historical generation rejected"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e14-no-generation"
+    },
+    {
+      "id": "E15-read-invalid-arg",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "negative read generation rejected"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e15-read-invalid-arg"
+    },
+    {
+      "id": "E16-normalization-identity",
+      "input": {
+        "kind": "contract-error-path"
+      },
+      "expected": {
+        "passed": true
+      },
+      "actual": {
+        "passed": true,
+        "detail": "reordered input maps to same request identity"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#e16-normalization-identity"
+    },
+    {
+      "id": "C01-concurrent-commits-one-winner",
+      "input": {
+        "kind": "real-process",
+        "database": "on-disk WAL",
+        "fault_stage": "concurrent apply race"
+      },
+      "expected": {
+        "serializable_atomic_generation": true
+      },
+      "actual": {
+        "trials_run": 1,
+        "split_brain_observed": true,
+        "serial_reason": "SPLIT_BRAIN: two success receipts at generation 1 but only one persisted; violates serializable atomic generation",
+        "witness_trial": 0,
+        "witness": {
+          "trial": 0,
+          "returns": [
+            {
+              "event": "call_return",
+              "receipt": {
+                "batch_id": "batch-a",
+                "generation": 1,
+                "events": 1,
+                "outcomes": 1
+              }
+            },
+            {
+              "event": "call_return",
+              "receipt": {
+                "batch_id": "batch-b",
+                "generation": 1,
+                "events": 1,
+                "outcomes": 1
+              }
+            }
+          ],
+          "rc": [
+            0,
+            0
+          ],
+          "audit_generation": 1,
+          "receipts": [
+            {
+              "batch_id": "batch-a",
+              "events": 1,
+              "generation": 1,
+              "outcomes": 1
+            }
+          ],
+          "split_brain": true
+        },
+        "all_observations": [
+          {
+            "trial": 0,
+            "returns": [
+              {
+                "event": "call_return",
+                "receipt": {
+                  "batch_id": "batch-a",
+                  "generation": 1,
+                  "events": 1,
+                  "outcomes": 1
+                }
+              },
+              {
+                "event": "call_return",
+                "receipt": {
+                  "batch_id": "batch-b",
+                  "generation": 1,
+                  "events": 1,
+                  "outcomes": 1
+                }
+              }
+            ],
+            "rc": [
+              0,
+              0
+            ],
+            "audit_generation": 1,
+            "receipts": [
+              {
+                "batch_id": "batch-a",
+                "events": 1,
+                "generation": 1,
+                "outcomes": 1
+              }
+            ],
+            "split_brain": true
+          }
+        ]
+      },
+      "passed": false,
+      "known_deviation": true,
+      "report_ref": "REPORT.md#c01-concurrent-commits-one-winner"
+    },
+    {
+      "id": "C02-kill-before-commit-no-partial",
+      "input": {
+        "kind": "real-process",
+        "database": "on-disk WAL",
+        "fault_stage": "before_commit (SIGKILL)"
+      },
+      "expected": {
+        "serializable_atomic_generation": true
+      },
+      "actual": {
+        "returncode": -9,
+        "worker_events": [
+          {
+            "event": "call_start",
+            "batch_id": "crash",
+            "generation": 0,
+            "pid": 1400
+          },
+          {
+            "event": "fault_reached",
+            "stage": "before_commit",
+            "pid": 1400
+          }
+        ],
+        "audit": {
+          "generation": 0,
+          "events": [],
+          "receipts": [],
+          "snapshots": [
+            0
+          ]
+        },
+        "gate_reached": true
+      },
+      "passed": true,
+      "known_deviation": false,
+      "report_ref": "REPORT.md#c02-kill-before-commit-no-partial"
+    },
+    {
+      "id": "C06-in-txn-exception-rollback",
+      "input": {
+        "kind": "real-process",
+        "database": "on-disk WAL",
+        "fault_stage": "after_events / after_snapshot in-transaction exception"
+      },
+      "expected": {
+        "serializable_atomic_generation": true
+      },
+      "actual": {
+        "after_events": {
+          "returncode": 0,
+          "raised_runtime_error": true,
+          "clean_rollback": true,
+          "worker_events": [
+            {
+              "event": "call_start",
+              "batch_id": "rb-after_events",
+              "generation": 0,
+              "pid": 1402
+            },
+            {
+              "event": "fault_reached",
+              "stage": "after_events",
+              "pid": 1402
+            },
+            {
+              "event": "call_error",
+              "marker": "RuntimeError",
+              "message": "injected-after_events"
+            }
+          ]
+        },
+        "after_snapshot": {
+          "returncode": 0,
+          "raised_runtime_error": true,
+          "clean_rollback": true,
+          "worker_events": [
+            {
+              "event": "call_start",
+              "batch_id": "rb-after_snapshot",
+              "generation": 0,
+              "pid": 1404
+            },
+            {
+              "event": "fault_reached",
+              "stage": "after_snapshot",
+              "pid": 1404
+            },
+            {
+              "event": "call_error",
+              "marker": "RuntimeError",
+              "message": "injected-after_snapshot"
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "known_deviation": false,
+      "report_ref": "REPORT.md#c06-in-txn-exception-rollback"
+    },
+    {
+      "id": "C03-response-loss-replay-no-rollback",
+      "input": {
+        "kind": "real-process",
+        "database": "on-disk WAL",
+        "fault_stage": "after_commit response loss (SIGKILL) + replay"
+      },
+      "expected": {
+        "serializable_atomic_generation": true
+      },
+      "actual": {
+        "kill_returncode": -9,
+        "worker_events": [
+          {
+            "event": "call_start",
+            "batch_id": "lost",
+            "generation": 0,
+            "pid": 1406
+          },
+          {
+            "event": "fault_reached",
+            "stage": "after_commit",
+            "pid": 1406
+          }
+        ],
+        "audit_before_replay": {
+          "generation": 1,
+          "events": [
+            {
+              "id": "y",
+              "parents": [],
+              "reads": {},
+              "writes": {
+                "k": 5
+              }
+            }
+          ],
+          "receipts": [
+            {
+              "batch_id": "lost",
+              "events": 1,
+              "generation": 1,
+              "outcomes": 1
+            }
+          ],
+          "snapshots": [
+            0,
+            1
+          ]
+        },
+        "replay_records": [
+          {
+            "event": "replay_start",
+            "batch_id": "lost",
+            "pid": 1408
+          },
+          {
+            "event": "replay_return",
+            "receipt": {
+              "batch_id": "lost",
+              "events": 1,
+              "generation": 1,
+              "outcomes": 1
+            }
+          }
+        ],
+        "replay_rc": 0,
+        "audit_after": {
+          "generation": 1,
+          "events": [
+            {
+              "id": "y",
+              "parents": [],
+              "reads": {},
+              "writes": {
+                "k": 5
+              }
+            }
+          ],
+          "receipts": [
+            {
+              "batch_id": "lost",
+              "events": 1,
+              "generation": 1,
+              "outcomes": 1
+            }
+          ],
+          "snapshots": [
+            0,
+            1
+          ]
+        }
+      },
+      "passed": true,
+      "known_deviation": false,
+      "report_ref": "REPORT.md#c03-response-loss-replay-no-rollback"
+    },
+    {
+      "id": "C04-reopen-continues-committed-state",
+      "input": {
+        "kind": "real-process",
+        "database": "on-disk WAL",
+        "fault_stage": "process close + independent reopen"
+      },
+      "expected": {
+        "serializable_atomic_generation": true
+      },
+      "actual": {
+        "first_rc": 0,
+        "second_rc": 0,
+        "audit_gen1": 1,
+        "audit_gen2": 2,
+        "events": [
+          {
+            "id": "next",
+            "parents": [
+              "root"
+            ],
+            "reads": {
+              "k": 1
+            },
+            "writes": {
+              "k": 2
+            }
+          },
+          {
+            "id": "root",
+            "parents": [],
+            "reads": {},
+            "writes": {
+              "k": 1
+            }
+          }
+        ],
+        "snapshot_generations": [
+          0,
+          1,
+          2
+        ]
+      },
+      "passed": true,
+      "known_deviation": false,
+      "report_ref": "REPORT.md#c04-reopen-continues-committed-state"
+    },
+    {
+      "id": "C05-stale-plan-yields-to-newer-generation",
+      "input": {
+        "kind": "real-process",
+        "database": "on-disk WAL",
+        "fault_stage": "after_plan pause then peer commit"
+      },
+      "expected": {
+        "serializable_atomic_generation": true
+      },
+      "actual": {
+        "fast_rc": 0,
+        "fast_events": [
+          {
+            "event": "call_start",
+            "batch_id": "fast-batch",
+            "generation": 0,
+            "pid": 1415
+          },
+          {
+            "event": "call_return",
+            "receipt": {
+              "batch_id": "fast-batch",
+              "generation": 1,
+              "events": 1,
+              "outcomes": 1
+            }
+          }
+        ],
+        "slow_rc": 0,
+        "slow_outcome": {
+          "event": "call_error",
+          "marker": "Error",
+          "message": "GENERATION_CONFLICT"
+        },
+        "audit_generation": 1,
+        "receipts": [
+          {
+            "batch_id": "fast-batch",
+            "events": 1,
+            "generation": 1,
+            "outcomes": 1
+          }
+        ]
+      },
+      "passed": true,
+      "known_deviation": false,
+      "report_ref": "REPORT.md#c05-stale-plan-yields-to-newer-generation"
+    },
+    {
+      "id": "R01-random-property-120-seeds",
+      "input": {
+        "base_seed": 20260101,
+        "count": 120,
+        "generator": "qa.randomize.generate_graph",
+        "size_range": [
+          2,
+          9
+        ]
+      },
+      "expected": {
+        "all_families_exact": true
+      },
+      "actual": {
+        "passed_trials": 120,
+        "total_trials": 120,
+        "findings": 0,
+        "seed_artifacts": []
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#r01-random-property"
+    },
+    {
+      "id": "M01-causal-loss-detected",
+      "input": {
+        "mutation_kind": "causal_loss",
+        "shrunk_events": [
+          {
+            "id": "e3",
+            "parents": [],
+            "reads": {},
+            "writes": {
+              "w2": 1,
+              "w0": 4
+            }
+          },
+          {
+            "id": "e4",
+            "parents": [
+              "e3"
+            ],
+            "reads": {
+              "w0": null
+            },
+            "writes": {
+              "w0": 0,
+              "w1": 4
+            }
+          }
+        ],
+        "shrunk_size": 2
+      },
+      "expected": {
+        "detected": true,
+        "note": "oracle flags missing/spurious ledger, illegal witness, or receipt/snapshot count divergence"
+      },
+      "actual": {
+        "family_exact": false,
+        "witness_ok": false,
+        "receipt_outcomes": 1,
+        "actual_outcomes": 1,
+        "spurious": [
+          [
+            [
+              "w0",
+              4
+            ],
+            [
+              "w1",
+              4
+            ],
+            [
+              "w2",
+              1
+            ]
+          ]
+        ],
+        "missing": [],
+        "receipt_split": false
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#m01-causal-loss-detected"
+    },
+    {
+      "id": "M02-cross-well-splice-detected",
+      "input": {
+        "mutation_kind": "cross_well_splice",
+        "shrunk_events": [
+          {
+            "id": "e0",
+            "parents": [],
+            "reads": {},
+            "writes": {
+              "w1": 4
+            }
+          },
+          {
+            "id": "e4",
+            "parents": [],
+            "reads": {
+              "w2": null
+            },
+            "writes": {
+              "w2": 2,
+              "w1": 3
+            }
+          }
+        ],
+        "shrunk_size": 2
+      },
+      "expected": {
+        "detected": true,
+        "note": "oracle flags missing/spurious ledger, illegal witness, or receipt/snapshot count divergence"
+      },
+      "actual": {
+        "family_exact": true,
+        "witness_ok": false,
+        "receipt_outcomes": 2,
+        "actual_outcomes": 2,
+        "spurious": [],
+        "missing": [],
+        "receipt_split": false
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#m02-cross-well-splice-detected"
+    },
+    {
+      "id": "M03-receipt-state-split-detected",
+      "input": {
+        "mutation_kind": "receipt_state_split",
+        "shrunk_events": [
+          {
+            "id": "e3",
+            "parents": [],
+            "reads": {},
+            "writes": {
+              "w2": 4
+            }
+          }
+        ],
+        "shrunk_size": 1
+      },
+      "expected": {
+        "detected": true,
+        "note": "oracle flags missing/spurious ledger, illegal witness, or receipt/snapshot count divergence"
+      },
+      "actual": {
+        "family_exact": true,
+        "witness_ok": true,
+        "receipt_outcomes": 2,
+        "actual_outcomes": 1,
+        "spurious": [],
+        "missing": [],
+        "receipt_split": true
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#m03-receipt-state-split-detected"
+    },
+    {
+      "id": "P01-measured-time-and-peak-memory",
+      "input": {
+        "sweeps": {
+          "width_sweep": [
+            {
+              "events": 6,
+              "wells": 6,
+              "topo_order_count": 2,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 1,
+              "elapsed_seconds": 0.008313,
+              "peak_python_bytes": 132368,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "causal_width",
+              "construction": {
+                "n": 6,
+                "anti_chain_width": 2
+              }
+            },
+            {
+              "events": 6,
+              "wells": 6,
+              "topo_order_count": 6,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 1,
+              "elapsed_seconds": 0.010638,
+              "peak_python_bytes": 132400,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "causal_width",
+              "construction": {
+                "n": 6,
+                "anti_chain_width": 3
+              }
+            },
+            {
+              "events": 6,
+              "wells": 6,
+              "topo_order_count": 720,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 1,
+              "elapsed_seconds": 0.136266,
+              "peak_python_bytes": 128520,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "causal_width",
+              "construction": {
+                "n": 6,
+                "anti_chain_width": 6
+              }
+            },
+            {
+              "events": 7,
+              "wells": 7,
+              "topo_order_count": 2,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 1,
+              "elapsed_seconds": 0.011929,
+              "peak_python_bytes": 190012,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "causal_width",
+              "construction": {
+                "n": 7,
+                "anti_chain_width": 2
+              }
+            },
+            {
+              "events": 7,
+              "wells": 7,
+              "topo_order_count": 6,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 1,
+              "elapsed_seconds": 0.015279,
+              "peak_python_bytes": 190012,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "causal_width",
+              "construction": {
+                "n": 7,
+                "anti_chain_width": 3
+              }
+            },
+            {
+              "events": 7,
+              "wells": 7,
+              "topo_order_count": 5040,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 1,
+              "elapsed_seconds": 1.193545,
+              "peak_python_bytes": 182948,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "causal_width",
+              "construction": {
+                "n": 7,
+                "anti_chain_width": 7
+              }
+            },
+            {
+              "events": 8,
+              "wells": 8,
+              "topo_order_count": 2,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 1,
+              "elapsed_seconds": 0.017816,
+              "peak_python_bytes": 255128,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "causal_width",
+              "construction": {
+                "n": 8,
+                "anti_chain_width": 2
+              }
+            },
+            {
+              "events": 8,
+              "wells": 8,
+              "topo_order_count": 24,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 1,
+              "elapsed_seconds": 0.046679,
+              "peak_python_bytes": 255096,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "causal_width",
+              "construction": {
+                "n": 8,
+                "anti_chain_width": 4
+              }
+            },
+            {
+              "events": 8,
+              "wells": 8,
+              "topo_order_count": 40320,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 1,
+              "elapsed_seconds": 14.976877,
+              "peak_python_bytes": 245024,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "causal_width",
+              "construction": {
+                "n": 8,
+                "anti_chain_width": 8
+              }
+            }
+          ],
+          "coupling_sweep": [
+            {
+              "events": 6,
+              "wells": 1,
+              "topo_order_count": 720,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 4,
+              "elapsed_seconds": 0.166804,
+              "peak_python_bytes": 117548,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "shared_key_coupling",
+              "construction": {
+                "n": 6,
+                "shared_keys": 1
+              }
+            },
+            {
+              "events": 6,
+              "wells": 2,
+              "topo_order_count": 720,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 4,
+              "elapsed_seconds": 0.081657,
+              "peak_python_bytes": 109360,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "shared_key_coupling",
+              "construction": {
+                "n": 6,
+                "shared_keys": 2
+              }
+            },
+            {
+              "events": 6,
+              "wells": 3,
+              "topo_order_count": 720,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 8,
+              "elapsed_seconds": 0.35066,
+              "peak_python_bytes": 130236,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "shared_key_coupling",
+              "construction": {
+                "n": 6,
+                "shared_keys": 3
+              }
+            },
+            {
+              "events": 7,
+              "wells": 1,
+              "topo_order_count": 5040,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 4,
+              "elapsed_seconds": 1.229004,
+              "peak_python_bytes": 165196,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "shared_key_coupling",
+              "construction": {
+                "n": 7,
+                "shared_keys": 1
+              }
+            },
+            {
+              "events": 7,
+              "wells": 2,
+              "topo_order_count": 5040,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 4,
+              "elapsed_seconds": 0.538103,
+              "peak_python_bytes": 149540,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "shared_key_coupling",
+              "construction": {
+                "n": 7,
+                "shared_keys": 2
+              }
+            },
+            {
+              "events": 7,
+              "wells": 3,
+              "topo_order_count": 5040,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 12,
+              "elapsed_seconds": 3.006119,
+              "peak_python_bytes": 192456,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "shared_key_coupling",
+              "construction": {
+                "n": 7,
+                "shared_keys": 3
+              }
+            },
+            {
+              "events": 8,
+              "wells": 1,
+              "topo_order_count": 40320,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 4,
+              "elapsed_seconds": 14.024675,
+              "peak_python_bytes": 219740,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "shared_key_coupling",
+              "construction": {
+                "n": 8,
+                "shared_keys": 1
+              }
+            },
+            {
+              "events": 8,
+              "wells": 2,
+              "topo_order_count": 40320,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 4,
+              "elapsed_seconds": 5.719073,
+              "peak_python_bytes": 196756,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "shared_key_coupling",
+              "construction": {
+                "n": 8,
+                "shared_keys": 2
+              }
+            },
+            {
+              "events": 8,
+              "wells": 4,
+              "topo_order_count": 40320,
+              "topo_order_note": "exact",
+              "topo_order_lower_bound": null,
+              "distinct_outcomes": 1,
+              "elapsed_seconds": 0.478343,
+              "peak_python_bytes": 188552,
+              "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+              "axis": "shared_key_coupling",
+              "construction": {
+                "n": 8,
+                "shared_keys": 4
+              }
+            }
+          ],
+          "large_coupled_dag": {
+            "events": 12,
+            "wells": 4,
+            "topo_order_count": 10395,
+            "topo_order_note": "exact",
+            "topo_order_lower_bound": null,
+            "distinct_outcomes": 9,
+            "elapsed_seconds": 12.212389,
+            "peak_python_bytes": 654756,
+            "measurement": "tracemalloc peak over full sat_outcomes run; wall time via time.perf_counter",
+            "axis": "large_enumeration_infeasible",
+            "construction": {
+              "n": 12,
+              "shape": "wide causal DAG, anti-chain width bounded by parent edges"
+            }
+          },
+          "limits": {
+            "method": "DPLL SAT All-SAT, chronological backtracking",
+            "practical_knee": "fully-coupled n=8 (40,320 topo orders) ~14s; the wide causal DAG at n=12 (10,395 topo orders) ~12s — parent edges prune some search but the All-SAT UNSAT proof still dominates",
+            "not_measured": "no estimate is reported where enumeration is infeasible; only a lower-bound note is kept"
+          }
+        }
+      },
+      "expected": {
+        "measurements_real_not_estimated": true
+      },
+      "actual": {
+        "method": "DPLL SAT All-SAT, chronological backtracking",
+        "practical_knee": "fully-coupled n=8 (40,320 topo orders) ~14s; the wide causal DAG at n=12 (10,395 topo orders) ~12s — parent edges prune some search but the All-SAT UNSAT proof still dominates",
+        "not_measured": "no estimate is reported where enumeration is infeasible; only a lower-bound note is kept"
+      },
+      "passed": true,
+      "report_ref": "REPORT.md#p01-resource-measurement"
+    }
+  ]
+}

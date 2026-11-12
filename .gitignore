@@ -15,3 +15,10 @@ credentials.json
 *token*.json
 *.pem
 *.key
+
+# QA transient runtime artifacts (evidence.json and source are tracked)
+qaartifacts/
+*.db
+*.db-wal
+*.db-shm
+
